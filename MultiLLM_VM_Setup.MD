@@ -31,6 +31,10 @@
 
     sudo ./vm_setup_for_multillm.sh
 
+## Refresh the bash
+    source ~/.bashrc
+
+
 ## Clone the repos
 
 Now that you have  the necessary setup for using multillm library on  VM , you can now  clone the projects and put them in the same directory ***projects.
