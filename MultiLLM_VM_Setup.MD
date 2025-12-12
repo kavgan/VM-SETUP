@@ -29,14 +29,35 @@ sudo ./vm_setup_for_multillm.sh
 
 ## Clone the repos
 
-Now that you have setup VM for usage, now clone the projects and put them in the same directory ***projects. (See the steps here on how to clone the project with ssh key : [Clone projects in VM](https://opinosis-my.sharepoint.com/:w:/g/personal/asif_mahmud_opinosis-analytics_com/IQA6_JMywTVCRqAIloKdIsHLAabMd2FaXIn_fI3eqbv7Ouo?e=5CBAGE&nav=eyJoIjoiMTExMzAyNjQ5OSJ9))***
+Now that you have setup VM for usage, now clone the projects and put them in the same directory ***projects.
+Please Note: Before running the code below generate a ssh key from the VM and put it in yor git hub:** *
 
-    mkdir projects &&
+**ssh-keygen -t ed25519 -C your_email@example.com**.** **
 
+For example:
 
-    git clone git@github.com:opinosis-analytics/Opinosis-MultiLLM.git &&
+* **ssh-keygen -t ed25519 -C "**1421015@iub.edu.bd**"**
+
+mkdir projects && cd projects &&
+
+   git clone git@github.com:opinosis-analytics/Opinosis-MultiLLM.git &&
 
     git clone git@github.com:opinosis-analytics/use_package_multi_llm.git
 
+## Run the project use_package_multillm
 
-Read the instructions on its [Readme](https://github.com/opinosis-analytics/use_package_multi_llm/blob/main/README.MD#2-run-script) on how to run the script and notebook
+Read the instructions on its [Readme](https://github.com/opinosis-analytics/use_package_multi_llm/blob/main/README.MD#11-install-oa-multillm-with-pipenv) on how to run the script and notebook
+
+### To Run the script:
+
+cd  use_package_multi_llm
+
+ python index.py
+
+### To Run Jupyter notebook:
+
+cd  use_package_multi_llm
+
+jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token=''
+
+Open the url [http://localhost:8888/notebooks/notebook/test_oa_multi_llm_package.ipynb](http://localhost:8888/notebooks/notebook/test_oa_multi_llm_package.ipynb)
