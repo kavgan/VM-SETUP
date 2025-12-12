@@ -8,7 +8,7 @@ ssh -i ~/.ssh/kavita_gpu.pem kavita@172.210.243.226
 
     sudo apt update && sudo apt install -y nano
 
-## Create the shell script file
+## Create and run the shell script file
 
 1. Create the shell script file:
 
