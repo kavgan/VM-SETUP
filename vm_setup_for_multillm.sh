@@ -42,6 +42,14 @@ sudo apt install -y curl git build-essential \
 sudo apt install -y python3-pip
 
 # -------------------------
+# Install ffmpeg
+# -------------------------
+echo "Installing ffmpeg for whisper..."
+sudo apt install -y ffmpeg
+echo "Successfully installed ffmpeg."
+
+
+# -------------------------
 # Install pyenv
 # -------------------------
 curl https://pyenv.run | bash
