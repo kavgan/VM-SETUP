@@ -1,0 +1,92 @@
+#!/bin/bash
+
+set -e  # exit on error
+echo "Start creating the enviroment in the VM for MultiLLM library"
+
+# -------------------------
+# Make apt fully non-interactive (fix tzdata prompt)
+# -------------------------
+export DEBIAN_FRONTEND=noninteractive
+
+# -------------------------
+# Sync tzdata with system timezone (avoid prompts)
+# -------------------------
+sudo dpkg-reconfigure -f noninteractive tzdata
+
+# -------------------------
+# Update apt packages
+# -------------------------
+sudo apt update -y
+
+# -------------------------
+# Install basic dependencies
+# -------------------------
+sudo apt install -y curl git build-essential \
+    libssl-dev zlib1g-dev libbz2-dev libreadline-dev \
+    libsqlite3-dev wget llvm libncursesw5-dev \
+    xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+
+# -------------------------
+# Install pip (Python package manager)
+# -------------------------
+sudo apt install -y python3-pip
+
+# -------------------------
+# Install pyenv
+# -------------------------
+curl https://pyenv.run | bash
+
+# -------------------------
+# Make pyenv persistent in shell
+# -------------------------
+PYENV_ROOT="$HOME/.pyenv"
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+
+# Also apply it to current script session
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# -------------------------
+# Install Python 3.11 using pyenv
+# -------------------------
+pyenv install 3.11.13
+pyenv global 3.11.13   # Set Python 3.11 globally
+
+# -------------------------
+# Install pipenv
+# -------------------------
+pip install --upgrade pip
+pip install pipenv
+
+# -------------------------
+# Install Ollama
+# -------------------------
+curl -fsSL https://ollama.com/install.sh | sh
+
+# -------------------------
+# Pull qwen0.6 model
+# -------------------------
+# -------------------------
+# Start Ollama server
+# -------------------------
+echo "Starting Ollama server..."
+ollama serve &
+
+# Wait until the server is responding
+echo "Waiting for Ollama server to start..."
+until curl -s http://127.0.0.1:11434/health; do
+    sleep 1
+done
+
+echo "Ollama server is running in the background."
+sleep 5  # small delay to ensure server is fully ready
+
+echo "Downloading Qwen model from Ollama."
+ollama pull qwen3:0.6b
+
+echo "Setup completed successfully !!"
