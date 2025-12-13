@@ -1,16 +1,26 @@
 # VM Setup for MultiLLM
 
+Grab and put the private key in the ssh folder and provide permissions to read the SSH key:
+
+    open ~/.ssh
+
+After putting the key in the  ssh folder. Run:
+
+    chmod 600 ~/.ssh/kavita_gpu2.pem
+
+
 ## Login to VM
 
-    ssh -i ~/.ssh/kavita_gpu.pem kavita@172.210.243.226
+1. **Simple Login**
 
-ssh -i ~/.ssh/kavita_gpu2.pem opinosis@20.55.233.67
-ssh -L 8888:localhost:8888 -i ~/.ssh/kavita_gpu2.pem opinosis@20.55.233.67
+        ssh -i ~/.ssh/kavita_gpu.pem kavita@172.210.243.226
+
+2. **SSH tunnel to use jupyter notebook**: 
+
+    Use this command if you want to make a ssh tunnel to your computer. It will **let you use the jupyter notebook from VM to your local machine** :
+
+        ssh -L 8888:localhost:8888 -i ~/.ssh/kavita_gpu2.pem opinosis@20.55.233.67
  
-open ~/.ssh
-
-chmod 600 ~/.ssh/kavita_gpu2.pem
-
 ## Install nano
 
     sudo apt update && sudo apt install -y nano
@@ -50,8 +60,17 @@ Please Note: Before running the code below generate a ssh key from the VM and pu
 
 For example:
 
-* ssh-keygen -t ed25519 -C "1421015@iub.edu.bd"
-* ssh-keygen -t ed25519 -C "[1421015@iub.edu.bd](mailto:1421015@iub.edu.bd "mailto:1421015@iub.edu.bd")" && echo "Paste the key to your github account: [https://github.com/settings/ssh/new](https://github.com/settings/ssh/new "https://github.com/settings/ssh/new")" && cat ~/.ssh/id_ed25519.pub
+    ssh-keygen -t ed25519 -C "[1421015@iub.edu.bd](mailto:1421015@iub.edu.bd "mailto:1421015@iub.edu.bd")" && 
+    
+    printf "SSH KEY:\n\n" && 
+    
+    cat ~/.ssh/id_ed25519.pub && 
+
+    printf "\n\n"
+
+    printf "Paste the key to your github account: https://github.com/settings/ssh/new"
+
+    printf "\n\n"
 
 The command below creates a directory called **projects** and clones the following library inside it : Opinosis-MultiLLM and use_package_multi_llm
 
@@ -69,13 +88,15 @@ Now that the enviroment is set up, you can use the multillm library in the use_p
 
 1. Enter the directory:
 
-   cd  use_package_multi_llm
+        cd use_package_multi_llm
+        
 2. Install packages
 
-   pipenv install -v
+        pipenv install -v
+
 3. Enter the shell
 
-   pipenv shell
+        pipenv shell
 
 ### Run the script
 
