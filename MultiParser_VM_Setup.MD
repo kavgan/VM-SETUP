@@ -74,6 +74,10 @@ Now that the enviroment is set up, you can use the multiparser library in the us
 
    pipenv install -v
 
+3. Install MultiParser package
+
+    pipenv run pip install -e ../Opinosis-MultiParser -v
+    
 3. Enter the shell
 
    pipenv shell
