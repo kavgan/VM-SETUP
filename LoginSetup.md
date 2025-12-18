@@ -1,7 +1,7 @@
 
-## 0. Enable RSA 
+## 0. Enable Key Authentication on Server
 
-Check to ensure key authentication enabled.
+Check to ensure key authentication is enabled on server.
 
     sudo nano /etc/ssh/sshd_config
 
