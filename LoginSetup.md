@@ -47,5 +47,6 @@ Paste public key from local machine and save.
     ssh usern@ip -i ~/.ssh/vm_key
 
 
-## Create Jupyter Tunnel
-  ssh  -i /home/kavgan/.ssh/id_rsa -N -L 3333:localhost:3333 user@123.456.789.10
+## 4. Create Jupyter Tunnel if Needed
+  
+      ssh  -i ~/.ssh/vm_key -N -L 3333:localhost:3333 user@123.456.789.10
