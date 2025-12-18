@@ -5,7 +5,7 @@ Check to ensure key authentication is enabled on server.
 
     sudo nano /etc/ssh/sshd_config
 
-## 1. Generate Keys
+## 1. Generate Keys on Local Machine
 Go to your local terminal
   
     ssh-keygen -t rsa -b 4096
