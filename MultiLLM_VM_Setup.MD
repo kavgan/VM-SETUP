@@ -77,6 +77,17 @@ Verify that the key is working from your terminal. This should request to add ke
 
     ssh -T git@github.com
 
+If key **doesn't work** in that it uses the wrong key:
+
+    nano ~/.ssh/config
+
+Add this:
+
+    Host github-new-key-repo
+     HostName github.com
+      User git
+      IdentityFile ~/.ssh/id_ed25519
+    
 
 The command below creates a directory called **projects** and clones the following library inside it : Opinosis-MultiLLM and use_package_multi_llm
 
