@@ -32,9 +32,11 @@ Create a file
 
     vim vm_key.pub
 
-Paste public key from local machine and save.
+Paste public key from local machine and save. Then add to list of authorized keys.
 
     echo vm_key.pub >> ~/.ssh/authorized_keys
+
+Copy key to the right folder on serve and set correct permissions.
  
     mv vm_key.pub ~/.ssh/
 
